@@ -5,7 +5,7 @@ from .forms import HouseForm, RoomForm
 
 from django.urls import reverse,reverse_lazy
 
-from django.views.generic import ListView, DetailView, FormView
+from django.views.generic import ListView, DetailView, FormView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 
 from allauth.account import views as auth_views
@@ -159,3 +159,8 @@ class CustomSignUpView(auth_views.SignupView):
             return reverse_lazy('room-index')
 
 allauth_signup = CustomSignUpView.as_view()
+
+class PrivacyPolicyView(TemplateView):
+    template_name = 'rent_home/privacy_policy.html'
+
+privacy_policy_view = PrivacyPolicyView.as_view()
