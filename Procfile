@@ -1,0 +1,1 @@
+web: gunicorn rental_homes.wsgi

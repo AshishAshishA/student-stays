@@ -1,0 +1,67 @@
+{% load static %}
+{% load socialaccount %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login-signup.css' %}">
+    <title>Rental Home SignUp Page</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+
+                        
+                    <form action="{% url 'account_login' %}" method="post" class="signup">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="login__field">
+                                {{ field.errors }}
+                                {{ field.label_tag }}
+                                <i class="login__icon fas"></i>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">                
+
+                    <button class="button login__submit">
+                        <span class="button__text">Sign up Now</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>	
+
+                </form>
+                
+                <div class="social-login">
+                    <h3>Continue With</h3>
+                    <div class="social-icons">
+                        <a href="{% provider_login_url 'google' next=request.GET.next %}" class="social-login__icon fab fa-google">
+                            <img src="{% static 'images/google.svg' %}" alt="login by google image" >
+                        </a>
+                        <a href="{% provider_login_url 'facebook' method='oauth2' %}" class="social-login__icon fab fa-facebook">
+                            <img src="{% static 'images/facebook-v1.svg' %}" alt="login by facebook image" width="30px" height="30px">
+                        </a>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20%; text-align: center;">Already have account : 
+                    <a href="{% url 'login' %}">log in</a>
+                </p>
+            </div>
+            
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		
+        </div>
+    </div>
+
+    
+</body>
+</html>

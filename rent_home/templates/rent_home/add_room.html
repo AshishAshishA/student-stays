@@ -1,0 +1,52 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/room_card.css' %}">
+    <title>Rental Home Login Page</title>
+
+</head>
+<body>
+
+    <div class="container">
+        <!-- code here -->
+        <div class="card">
+            <div class="card-image">	
+                <h2 class="card-heading">
+                    Get started
+                    <small>Let us create your account</small>
+                </h2>
+            </div>
+            <form class="card-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="input">
+                        {{ field.errors }}
+                        {{ field }}
+                        <label class="input-label">{{ field.label_tag }}</label>
+                    </div>
+                {% endfor %}
+
+                <div class="action">
+                    <button class="action-button" type="submit">Submit</button>
+                </div>
+            </form>
+            <div class="card-info">
+                <p>By listing your house, you are agreeing to our <a href="#">Terms and Conditions</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        
+            var budget_range_alert = document.getElementById('budget-range');
+            if (budget_range_alert) {
+                budget_range_alert.insertAdjacentHTML('afterend', '<p> (please select range which includes rent)</p>');
+            }
+    </script>
+</body>
+</html>

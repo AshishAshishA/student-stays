@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/room_card.css' %}">
+    <title>Rental Home Add House</title>
+
+</head>
+<body>
+
+    <div>
+        <p>Welcome {{ user }}</p>
+        <a href="{% url 'room-index' %}">Home</a>
+    </div>
+
+    <div class="container">
+        <!-- code here -->
+        <div class="card">
+            <div class="card-image">	
+                <h2 class="card-heading">
+                    Get started <br>
+                    <small>Help Students by listing your house</small>
+                </h2>
+            </div>
+            <form class="card-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="input">
+                        {{ field.errors }}
+                        {{ field }}
+                        <label class="input-label">{{ field.label_tag }}</label>
+                    </div>
+                {% endfor %}
+                
+                <button type="button" class="location-button" onclick="getUserLocation()">Use My Current Location</button>
+                <div class="action">
+                    <button class="action-button" type="submit">Submit</button>
+                </div>
+            </form>
+            <div class="card-info">
+                <p>By listing your house, you are agreeing to our <a href="#">Terms and Conditions</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        
+        const lat = document.getElementById('lat');
+        const long = document.getElementById('long');
+        const button = document.getElementById('get-location');
+
+        // console.log(lat)
+        // console.log(long)
+        // console.log(button)
+
+        function getUserLocation() {
+            try{
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        document.getElementById('lat').value = position.coords.latitude;
+                        document.getElementById('long').value = position.coords.longitude;
+                    })
+                    // navigator.geolocation.getCurrentPosition((position)=>{
+                    //     document.getElementById('lat').value = position.coords.latitude;
+                    //     document.getElementById('long').value = position.coords.longitude;
+                    // })
+
+                }
+            }catch(error){
+                alert('error in getting location', error)
+            }
+        }
+
+    </script>
+</body>
+</html>

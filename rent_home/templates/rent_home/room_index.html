@@ -1,0 +1,490 @@
+{% load socialaccount %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html >
+<head>
+  <!-- Site made with Mobirise Online Website Builder v5.9.13, https://a.mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/photo-1535186696008-7cba739a3103.jpeg" type="image/x-icon">
+  <meta name="description" content="Find affordable student housing near your university. Browse through a variety of rental options and find the perfect home for your academic journey.">
+  <title>Student Rental Rooms</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/web/assets/mobirise-icons2/mobirise2.css?rnd=1714678100026">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/bootstrap/css/bootstrap.min.css?rnd=1714678100026">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1714678100026">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1714678100026">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/parallax/jarallax.css?rnd=1714678100026">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/dropdown/css/style.css?rnd=1714678100026">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/socicon/css/styles.css?rnd=1714678100026">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/theme/css/style.css?rnd=1714678100026">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/css/mbr-additional.css?rnd=1714678100026" type="text/css">
+
+  
+  
+</head>
+<body>
+  
+  <section data-bs-version="5.1" class="menu menu2 cid-ubE6xtS9rT" once="menu" id="menu-5-ubE6xtS9rT">
+	
+
+	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				<span class="navbar-logo">
+					<a href="">
+						<img src="{% static 'static_asset/images/photo-1535186696008-7cba739a3103.jpeg' %}" alt="Rental room icon" style="height: 4.3rem;">
+					</a>
+				</span>
+				<span class="navbar-caption-wrap"><a class="navbar-caption text-black display-4" href="">StudentStays</a></span>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="true" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
+                    <li class="nav-link link text-black display-4" >
+                        filters :
+                        <form method="GET">
+                                <p>furnished : {{ rooms.form.furnished }}</p>
+                                <p>type : {{ rooms.form.room_type }}</p>
+                                <p>currently available : {{ rooms.form.available }}</p>
+                                <p>room for : {{ rooms.form.room_for }}</p>
+                
+                                <p>budget : {{ rooms.form.budget_range }}</p>
+                
+                
+                                <input type="submit" />
+                        </form>
+                    </li>
+					</li>
+                    
+                    {% if user.is_authenticated %}
+                        <p>Welcome {{user}}</p>
+                        <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'add-house' %}" arial-expanded="false" >Add House</a></li>
+                        <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'house-list' %}" arial-expanded="false" >My House</a></li>
+                        <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'logout' %}" arial-expanded="false" >logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'login' %}" arial-expanded="false" >login</a></li>
+                        <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'signup' %}" arial-expanded="false" >signup</a></li>
+                        <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'login' %}?next={% url 'add-house' %}" arial-expanded="false" >Add House</a></li>
+                        <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'login' %}?next={% url 'house-list' %}" arial-expanded="false" >My House</a></li>
+                    {% endif %}
+					<li class="nav-item">
+						<a class="nav-link link text-black display-4" href="">About</a>
+					</li>
+
+                </ul>
+			</div>
+		</div>
+	</nav>
+</section>
+
+<section data-bs-version="5.1" class="header16 cid-ubE6xtTZzo mbr-fullscreen mbr-parallax-background" id="hero-17-ubE6xtTZzo">
+  
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="content-wrap col-12 col-md-12">
+        <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1">
+          <strong>Cozy Digs</strong>
+        </h1>
+        
+        <p class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">Find Your Perfect Student Sanctuary - Where Comfort Meets Convenience!</p>
+        <div class="mbr-section-btn">
+          <a class="btn btn-white-outline display-7" href="">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section data-bs-version="5.1" class="article05 cid-ubE6xtTYQl" id="about-me-5-ubE6xtTYQl">
+  
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12">
+        <div class="card-wrapper">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-5 image-wrapper">
+              <img class="w-100" src="{% static 'static_asset/images/photo-1516979187457-637abb4f9353.jpeg' %}" alt="room image">
+            </div>
+            <div class="col-12 col-lg col-md-12">
+              <div class="text-wrapper align-left">
+                <h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                  <strong>Who We Are</strong>
+                </h1>
+                <p class="mbr-text mbr-fonts-style mb-3 display-7">Welcome to StudentStays, your ultimate destination for finding the coolest and comfiest student homes! We're here to make your search for the perfect sanctuary a breeze.</p>
+                <p class="mbr-text mbr-fonts-style mb-3 display-7">Our mission is simple: to provide students with top-notch living spaces that are not just rooms, but havens of relaxation and fun.</p>
+                <p class="mbr-text mbr-fonts-style display-7">Join the StudentStays family today and experience the joy of hassle-free living!</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div style="display: flex;">
+    <h1><strong style="align-self: center;">Rooms</strong></h1>
+    <a href="#bottom" style="margin-left: 45%;">Go To Bottom</a>
+</div>
+<strong style="font-style: italic;"> Note: click anywhere on room card to see details</strong>
+
+<section data-bs-version="5.1" class="features025 cid-ubEDa72U4k" id="features025-0">
+
+
+   {% for room in rooms.qs %}
+
+   <a href="{% url 'room-details' room.pk %}" class="">
+
+   <div class="container" style="background-color: #f5f5f5; padding: 10px;">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12">
+        <div class="card-wrapper">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-4 ">
+              <img class="w-100 h-50" src="{% static 'static_asset/images/house.jpg' %}" alt="rent room images">
+            </div>
+            <div class="col-12 col-lg col-md-12">
+              <div class="text-wrapper align-left">
+                <h5 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                  <strong>{{room.room_type}}</strong>
+                </h5>
+                <p class="price mbr-fonts-style mb-4 display-7">
+                  {{room.rent}} Rs<br>
+                </p>
+                    
+                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{room.room_for}}</p>
+                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{room.house.house_name}} {{room.house.area}}</p>
+                {% if room.available %}
+                    <p class="mbr-text mbr-fonts-style mb-4 display-7">currently available</p>
+                {% else %}
+                    <p class="mbr-text mbr-fonts-style mb-4 display-7">currently unavilable</p>
+                {% endif %}
+                
+                <div class="mbr-section-btn mt-3">
+                  <a class="btn btn-lg btn-secondary display-7 map-link" href="https://www.google.com/maps?q={{ room.house.latitude }},{{ room.house.longitude }}" target="_blank">View on Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br> <br>
+  </a>
+   {% endfor %}
+  </section>
+
+<section data-bs-version="5.1" class="features023 cid-ubE6xtUBFG" id="metrics-1-ubE6xtUBFG">
+
+    
+
+    
+    
+    <div class="container">
+        
+        <div class="row content-row justify-content-center">
+            <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
+                <div class="item-wrapper">
+                    <div class="title mb-2 mb-md-3">
+                        <span class="num mbr-fonts-style display-1">
+                            <strong>1000+</strong></span>
+                    </div>
+                    <h4 class="card-title mbr-fonts-style display-5">
+                        <strong>Happy Students</strong>
+                    </h4>
+                    
+                </div>
+            </div>
+            <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
+                <div class="item-wrapper">
+                    <div class="title mb-2 mb-md-3">
+                        <span class="num mbr-fonts-style display-1">
+                            <strong>500+</strong></span>
+                    </div>
+                    <h4 class="card-title mbr-fonts-style display-5">
+                        <strong>Available Rooms</strong>
+                    </h4>
+                    
+                </div>
+            </div>
+            <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
+                <div class="item-wrapper">
+                    <div class="title mb-2 mb-md-3">
+                        <span class="num mbr-fonts-style display-1">
+                            <strong>500+</strong></span>
+                    </div>
+                    <h4 class="card-title mbr-fonts-style display-5">
+                        <strong>Five-Star Reviews</strong>
+                    </h4>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="article14 cid-ubE6xtV6f6" id="generic-text-10-ubE6xtV6f6">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                    <strong class="mbr-section-title mbr-fonts-style" style="font-size: small;">Welcome to the Ultimate Student Rental Hub! Find your perfect home away from home with our Smart Filters, vibrant room cards, and interactive map. Join over 1000 happy students who have discovered their ideal living space with us. Choose from 500+ available rooms and explore our five-star reviews. With budget-friendly plans starting at just $50 a week, securing your dream room is just a click away. Don't settle for ordinary, experience extraordinary student living today!</strong>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="people04 cid-ubE6xtVjNj" id="testimonials-4-ubE6xtVjNj">
+	
+	
+	<div class="container">
+		<div class="row mb-5 justify-content-center">
+			<div class="col-12 mb-0 content-head">
+				<h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+					<strong>Raves</strong>
+				</h3>
+				
+			</div>
+		</div>
+		<div class="row mbr-masonry" data-masonry="{&quot;percentPosition&quot;: true }">
+			<div class="item features-without-image col-12 col-md-6 col-lg-4 active">
+				<div class="item-wrapper">
+					<div class="card-box align-left">
+						<p class="card-text mbr-fonts-style display-7">I found my dream room through this website! The process was smooth and hassle-free.</p>
+						<div class="img-wrapper mt-4 mb-3">
+							<img src="{% static 'static_asset/images/photo-1546919057-eae69a7a3c35.jpeg' %}" data-slide-to="0" data-bs-slide-to="0" alt="">
+						</div>
+						<h5 class="card-title mbr-fonts-style display-7">
+							<strong>Samantha</strong>
+						</h5>
+					</div>
+				</div>
+			</div>
+			<div class="item features-without-image col-12 col-md-6 col-lg-4">
+				<div class="item-wrapper">
+					<div class="card-box align-left">
+						<p class="card-text mbr-fonts-style display-7">The rooms are amazing, and the filters helped me narrow down my choices quickly.</p>
+						<div class="img-wrapper mt-4 mb-3">
+							<img src="{% static 'static_asset/images/photo-1626899798511-c3eaacb02846.j' %}peg" data-slide-to="4" data-bs-slide-to="4" alt="">
+						</div>
+						<h5 class="card-title mbr-fonts-style display-7">
+							<strong>Jake</strong>
+						</h5>
+					</div>
+				</div>
+			</div>
+			<div class="item features-without-image col-12 col-md-6 col-lg-4">
+				<div class="item-wrapper">
+					<div class="card-box align-left">
+						<p class="card-text mbr-fonts-style display-7">Highly recommend this site for students looking for affordable and stylish rental homes.</p>
+						<div class="img-wrapper mt-4 mb-3">
+							<img src="{% static 'static_asset/images/photo-1591714098656-94a8a95dcf50.j' %}peg" data-slide-to="5" data-bs-slide-to="5" alt="">
+						</div>
+						<h5 class="card-title mbr-fonts-style display-7">
+							<strong>Emily</strong>
+						</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section data-bs-version="5.1" class="list05 cid-ubE6xtTSGe" id="faq-3-ubE6xtTSGe">
+    
+    <div class="container">
+        <div class="col-12 mb-5 content-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>FAQ</strong>
+            </h3>
+            
+        </div>
+        <div class="row justify-content-center ">
+            <div class="col-12 col-lg-8">
+                <div class="item features-without-image col-12 active">
+                    <div class="item-wrapper">
+                        <h5 class="mbr-card-title mbr-fonts-style mt-0 mb-3 display-5">
+                            <strong>How do I book a room?</strong></h5>
+                        <p class="mbr-text mbr-fonts-style mt-0 mb-3 display-7">Booking a room with us is as easy as pie! Simply browse through our listings, select your dream room, and hit the 'Book Now' button.</p>
+                    </div>
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <h5 class="mbr-card-title mbr-fonts-style mt-0 mb-3 display-5">
+                            <strong>Are utilities included in the rent?</strong></h5>
+                        <p class="mbr-text mbr-fonts-style mt-0 mb-3 display-7">Absolutely! Say goodbye to hidden costs. All our rooms come with utilities included, so you can focus on studying and chilling.</p>
+                    </div>
+                </div>
+                
+                
+              
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="social4 cid-ubE6xtWJKG" id="follow-us-1-ubE6xtWJKG">
+    
+    
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="col-12">
+                <h3 class="mbr-section-title align-center mb-5 mbr-fonts-style display-2">
+                    <strong>Stay Connected with Us</strong>
+                </h3>
+                <div class="social-list align-center">
+                    <a class="iconfont-wrapper bg-facebook m-2 " target="_blank" href="https://mobiri.se">
+                        <span class="socicon-facebook socicon"></span>
+                    </a>
+                    <a class="iconfont-wrapper bg-twitter m-2" href="https://mobiri.se" target="_blank">
+                        <span class="socicon-twitter socicon"></span>
+                    </a>
+                    <a class="iconfont-wrapper bg-instagram m-2" href="https://mobiri.se" target="_blank">
+                        <span class="socicon-instagram socicon"></span>
+                    </a>
+                    
+                    
+                    
+                    
+                    
+                    <a class="iconfont-wrapper bg-tiktok m-2" href="https://mobiri.se" target="_blank">
+                        <span class="socicon-tiktok socicon"></span>
+                    </a>
+                    <br>
+                    <a href="#top">Back To Top</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section data-bs-version="5.1" class="contacts03 cid-ubE6xtXM0P" id="contacts-11-ubE6xtXM0P">
+  
+
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <div class="col-12 col-md-12">
+          <h5 class="mbr-section-title mbr-fonts-style mt-0 mb-4 display-2">
+            <strong>Contact Us</strong>
+          </h5>
+          <p class="mbr-section-subtitle mbr-fonts-style mt-0 mb-4 display-7">
+            Phone: +91 7209783541, 8109529956
+            <br>Email: info@studentrentalhomes.com
+            <br>Address: 123 Wild Way, Campus City
+            <br>Working Hours: Mon-Sun: 9am-5pm
+          </p> 
+
+          
+        </div>
+      </div>
+        <div class="col-lg-8 side-features">
+        <div class="google-map"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14731.59004921476!2d75.83231136341802!3d22.7195680187851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fb5a5b5381d1%3A0xc4d6e05e39ec57ed!2sIndore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1689597362021!5m2!1sen!2sin" allowfullscreen=""></iframe></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="footer3 cid-ubE6xtXmXo" once="footers" id="footer-3-ubE6xtXmXo">
+
+        
+
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="row-links">
+                <ul class="header-menu">
+                  
+                  
+                  
+                  
+                <li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="#" class="text-white">About</a>
+                  </li><li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="#" class="text-white">Services</a>
+                  </li><li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="#" class="text-white">FAQs</a>
+                  </li><li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="#" class="text-white">Contact</a>
+                  </li></ul>
+              </div>
+
+            <div class="col-12 mt-4">
+                <div class="social-row">
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-facebook display-7"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon-twitter socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon-instagram socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-linkedin"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-twitch"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-5">
+                <p class="mbr-fonts-style copyright display-7">© 2024 Student Rental Homes. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="{% static 'static_asset/web/assets/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'static_asset/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'static_asset/parallax/jarallax.js' %}"></script>
+  <script src="{% static 'static_asset/smoothscroll/smooth-scroll.js' %}"></script>
+  <script src="{% static 'static_asset/ytplayer/index.js' %}"></script>
+  <script src="{% static 'static_asset/dropdown/js/navbar-dropdown.js' %}"></script>
+  <script src="{% static 'static_asset/masonry/masonry.pkgd.min.js' %}"></script>
+  <script src="{% static 'static_asset/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'static_asset/theme/js/script.js' %}"></script>
+  
+  
+  
+</body>
+</html>
+
+

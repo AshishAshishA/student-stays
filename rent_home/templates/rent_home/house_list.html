@@ -1,0 +1,197 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html >
+<head>
+  <!-- Site made with Mobirise Online Website Builder v5.9.13, https://a.mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo5.png" type="image/x-icon">
+  <meta name="description" content="Experience luxury like never before in our exquisite hotel room. Book now for an unforgettable stay!">
+  <title>Rental Home House List</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/423464/assets/bootstrap/css/bootstrap.min.css?rnd=1714776387183">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/423464/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1714776387183">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/423464/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1714776387183">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/423464/assets/socicon/css/styles.css?rnd=1714776387183">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/423464/assets/theme/css/style.css?rnd=1714776387183">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/423464/assets/css/mbr-additional.css?rnd=1714776387183" type="text/css">
+  
+  
+  
+  
+</head>
+<body>
+
+  <nav class="navbar" style="background-color: #e3f2fd;">
+    <p style="margin-left: 5%;">Welcome {{user}}</p> 
+    <form class="container-fluid justify-content-start">
+      
+      <button class="btn btn-sm btn-outline-success me-2" type="button">
+        <a href="{% url 'room-index' %}" type="button">home</a>
+      </button>
+      <button class="btn btn-sm btn-outline-success me-2" type="button">
+        <a href="{% url 'add-house' %}" type="button">Add House</a>
+      </button>
+      {% if request.user == house.user %}
+        <button class="btn btn-outline-secondary" type="button" style="font-weight: bold;">
+          <a href="">Update Room Status</a>
+        </button>
+      {% endif %}
+    </form>
+  </nav>
+  
+  <section data-bs-version="5.1" class="header12 cid-ubKMpZyrBe" id="header12-5">
+  
+    {% for house in houses %}
+  <div class="text-center container">
+    <div class="row mb-4 justify-content-center">
+      <div class="col-12 col-md-8">
+        {% if house.image %}
+            <img class="w-100" src="{{ house.image.url }}" alt="room image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-12 content-head">
+        <h1 class="mbr-section-title mbr-fonts-style mb-4 display-1">
+          <strong></strong>
+        </h1>
+        <div class="mbr-text mbr-fonts-style mb-4 display-7">
+          <a href="{% url 'house-detail' house.pk %}">
+            <h2>
+                {{house.house_name }}: {{house.house_no}}
+              </h2>
+              <p>
+                Owner: {{house.owner_name}}
+                <br/>
+                Address: {{house.address}} 
+                <br/>
+                Contact Number: {{house.contact_no}}
+              </br>
+                Property Type : {{house.property_type}}
+              </p>
+              <hr>
+          </a>
+        </div>
+        <div class="mbr-section-btn mt-4">
+          <a class="btn btn-primary display-7" href="https://www.google.com/maps?q={{ house.latitude }},{{ house.longitude }}" target="_blank">View on Map</a>
+          <a class="btn btn-secondary display-7" href="{% url 'house-detail' house.pk %}">House Detail</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<section data-bs-version="5.1" class="social05 cid-ubKGiGvXYZ" id="follow-us-2-ubKGiGvXYZ">
+    
+
+    
+
+    <div class="container">
+        <div class="row">
+            <h3 class="mbr-section-title align-center mb-5 mbr-fonts-style display-2">
+                <strong>Join the Adventure Today</strong>
+            </h3>
+            <div class="col-12">
+                <div class="social-row">
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-facebook"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon-twitter socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon-instagram socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-linkedin"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="#" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-twitch"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="footer2 cid-ubKGiGvjTt" once="footers" id="footer-5-ubKGiGvjTt">
+    
+
+    
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 center mt-2 mb-3">
+                <p class="mbr-fonts-style copyright mb-0 display-7">© 2024 Luxury Hotel. All Rights Reserved</p>
+            </div>
+            <div class="col-12 col-lg-6 center">
+                <div class="row-links mt-2 mb-3">
+                    <ul class="row-links-soc">
+                        
+                        
+                        
+                        
+                    <li class="row-links-soc-item mbr-fonts-style display-7">
+                            <a href="#" class="text-white">Home</a>
+                        </li><li class="row-links-soc-item mbr-fonts-style display-7">
+                            <a href="#" class="text-white">Rooms</a>
+                        </li><li class="row-links-soc-item mbr-fonts-style display-7">
+                            <a href="#" class="text-white">About</a>
+                        </li><li class="row-links-soc-item mbr-fonts-style display-7">
+                            <a href="#" class="text-white">Contact</a>
+                        </li></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/ytplayer/index.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+  
+</body>
+</html>
+
+
+
+
+
+
+
+    <!-- <div class="navbar">
+        <a href="{% url 'room-index' %}">home</a>
+    </div>
+    <div>
+        {% for house in houses %}
+          <button>
+            
+          </button>
+        {% endfor %}
+    </div> -->
