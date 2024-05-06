@@ -23,6 +23,12 @@ class RoomIndexView(ListView):
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         queryset = Room.objects.all()
+        # print('filter',self.request.GET)
+
+        context['filter_done']=None
+        if self.request.GET:
+            context['filter_done']=True
+
         context['rooms'] = RoomFilter(self.request.GET, queryset=queryset)
 
 

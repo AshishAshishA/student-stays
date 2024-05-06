@@ -30,6 +30,7 @@ body {
 	z-index: 1;
 	position: relative;	
 	height: 100%;
+	margin-top: 0px;
 }
 
 .screen__background {		
@@ -97,13 +98,13 @@ body {
 }
 
 .login__field {
-	padding: 20px 0px;	
+	padding: 10px 0px;	
 	position: relative;	
 }
 
 .login__icon {
 	position: absolute;
-	top: 30px;
+	top: 20px;
 	color: #7875B5;
 }
 

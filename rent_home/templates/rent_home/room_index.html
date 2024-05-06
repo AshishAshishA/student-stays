@@ -25,6 +25,8 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;700&display=swap&display=swap"></noscript>
   <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/css/mbr-additional.css?rnd=1714678100026" type="text/css">
 
+
+  <link rel="stylesheet" href="{% static 'css/filter.css' %}">
   
   
 </head>
@@ -54,24 +56,9 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
-                    <li class="nav-link link text-black display-4" >
-                        filters :
-                        <form method="GET">
-                                <p>furnished : {{ rooms.form.furnished }}</p>
-                                <p>type : {{ rooms.form.room_type }}</p>
-                                <p>currently available : {{ rooms.form.available }}</p>
-                                <p>room for : {{ rooms.form.room_for }}</p>
-                
-                                <p>budget : {{ rooms.form.budget_range }}</p>
-                
-                
-                                <input type="submit" />
-                        </form>
-                    </li>
-					</li>
                     
                     {% if user.is_authenticated %}
-                        <p>Welcome {{user}}</p>
+                        <li class="nav-item"><a href="#" class="nav-link link text-black display-4" arial-expanded="false">Welcome {{user}}</a></li>
                         <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'add-house' %}" arial-expanded="false" >Add House</a></li>
                         <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'house-list' %}" arial-expanded="false" >My House</a></li>
                         <li class="nav-item"><a class="nav-link link text-black display-4" href="{% url 'logout' %}" arial-expanded="false" >logout</a></li>
@@ -85,15 +72,15 @@
 						<a class="nav-link link text-black display-4" href="">About</a>
 					</li>
 
-                </ul>
+          </ul>
 			</div>
 		</div>
 	</nav>
 </section>
 
-<section data-bs-version="5.1" class="header16 cid-ubE6xtTZzo mbr-fullscreen mbr-parallax-background" id="hero-17-ubE6xtTZzo">
-  
-  
+
+<section data-bs-version="5.1" class="header16 cid-ubE6xtTZzo mbr-fullscreen mbr-parallax-background filter_body" id="hero-17-ubE6xtTZzo">
+
   <div class="container-fluid">
     <div class="row">
       <div class="content-wrap col-12 col-md-12">
@@ -140,14 +127,47 @@
 </section>
 
 
-<div style="display: flex;">
+<section class="before-card-section"> 
+
+  <div style="display: flex;">
     <h1><strong style="align-self: center;">Rooms</strong></h1>
     <a href="#bottom" style="margin-left: 45%;">Go To Bottom</a>
 </div>
+<div>
+  {% if filter_done != None %}
+    <p>filter done : {{ filter_done }}</p>
+  {% else %}
+    <p>filter done : {{ filter_done }}</p>
+  {% endif %}
+</div>
+<details class="dropdown">
+  <summary role="button">
+    <a class="button">Click For Filters!</a>
+  </summary>
+  <ul style="display: gi;">
+
+    filters :
+    <form id="filterForm" method="GET">
+            <li><a>furnished : {{ rooms.form.furnished }}</a></li >
+            <li><a>type : {{ rooms.form.room_type }}</a></li >
+            <li><a>currently available : {{ rooms.form.available }}</a></li >
+            <li><a>room for : {{ rooms.form.room_for }}</a></li >
+            <li><a>area : {{ rooms.form.area }}</a></li >
+
+            <li><a>budget : {{ rooms.form.budget_range }}</a></li >
+
+
+            <input type="submit" />
+    </form>
+</ul>
+</details>
+
+
 <strong style="font-style: italic;"> Note: click anywhere on room card to see details</strong>
+</section>
 
 <section data-bs-version="5.1" class="features025 cid-ubEDa72U4k" id="features025-0">
-
+  <a name="rooms"></a>
 
    {% for room in rooms.qs %}
 
@@ -355,13 +375,13 @@
                     <strong>Stay Connected with Us</strong>
                 </h3>
                 <div class="social-list align-center">
-                    <a class="iconfont-wrapper bg-facebook m-2 " target="_blank" href="https://mobiri.se">
+                    <a class="iconfont-wrapper bg-facebook m-2 " target="_blank" href="#">
                         <span class="socicon-facebook socicon"></span>
                     </a>
-                    <a class="iconfont-wrapper bg-twitter m-2" href="https://mobiri.se" target="_blank">
+                    <a class="iconfont-wrapper bg-twitter m-2" href="#" target="_blank">
                         <span class="socicon-twitter socicon"></span>
                     </a>
-                    <a class="iconfont-wrapper bg-instagram m-2" href="https://mobiri.se" target="_blank">
+                    <a class="iconfont-wrapper bg-instagram m-2" href="#" target="_blank">
                         <span class="socicon-instagram socicon"></span>
                     </a>
                     
@@ -369,7 +389,7 @@
                     
                     
                     
-                    <a class="iconfont-wrapper bg-tiktok m-2" href="https://mobiri.se" target="_blank">
+                    <a class="iconfont-wrapper bg-tiktok m-2" href="#" target="_blank">
                         <span class="socicon-tiktok socicon"></span>
                     </a>
                     <br>
@@ -482,7 +502,20 @@
   <script src="{% static 'static_asset/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
   <script src="{% static 'static_asset/theme/js/script.js' %}"></script>
   
-  
+  <script>
+      
+      var filter_done = "{{ filter_done }}";
+
+      // Check if filter_done is "True" (as a string) or true (as a boolean)
+      if (filter_done === "True" || filter_done === true) {
+          // Get the anchor tag for the rooms section
+          var roomsAnchor = document.getElementsByName("rooms")[0];
+
+          // Scroll to the rooms section
+          roomsAnchor.scrollIntoView({ behavior: "smooth" });
+      }
+
+  </script>
   
 </body>
 </html>

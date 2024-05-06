@@ -12,6 +12,12 @@ class RoomFilter(filters.FilterSet):
         widget = forms.CheckboxSelectMultiple,
     )
 
+    area = filters.ModelChoiceFilter(
+        field_name="house__area",
+        queryset=Area.objects.all(),
+    )
+
+
     class Meta:
         model = Room
-        fields = ["room_type","furnished","available","budget_range","room_for"]
+        fields = ["room_type","furnished","available","budget_range","room_for","area"]
