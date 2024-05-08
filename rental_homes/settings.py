@@ -191,3 +191,10 @@ LOGIN_REDIRECT_URL = '/'
 # }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'indian-student-stays.homes',
+    'https://indian-student-stays.homes',
+    # Add other trusted origins if needed
+]
