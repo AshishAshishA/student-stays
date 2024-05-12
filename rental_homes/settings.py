@@ -97,16 +97,16 @@ WSGI_APPLICATION = "rental_homes.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 # DATABASES = {
-#     'default': dj_database_url.config(default='postgres://uaejbuaunufn8v:p28fa19b8f22b19e895bb3cb8957017eea7cb97e594d7a91d254c650ba157d957@cbofon2qjd2d0o.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/d1u2qgbn4us3h5')
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
 # }
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://uaejbuaunufn8v:p28fa19b8f22b19e895bb3cb8957017eea7cb97e594d7a91d254c650ba157d957@cbofon2qjd2d0o.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/d1u2qgbn4us3h5')
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

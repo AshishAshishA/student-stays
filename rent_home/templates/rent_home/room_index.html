@@ -25,7 +25,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;700&display=swap&display=swap"></noscript>
   <link rel="stylesheet" href="https://r.mobirisesite.com/421174/assets/css/mbr-additional.css?rnd=1714678100026" type="text/css">
 
-
+  <link rel="stylesheet" href="{% static 'css/room_index.css' %}">
   <link rel="stylesheet" href="{% static 'css/filter.css' %}">
   
   
@@ -79,12 +79,13 @@
 </section>
 
 
-<section data-bs-version="5.1" class="header16 cid-ubE6xtTZzo mbr-fullscreen mbr-parallax-background filter_body" id="hero-17-ubE6xtTZzo">
+<section data-bs-version="5.1" class="room-container header16 cid-ubE6xtTZzo mbr-fullscreen mbr-parallax-background filter_body" id="hero-17-ubE6xtTZzo">
 
   <div class="container-fluid">
     <div class="row">
       <div class="content-wrap col-12 col-md-12">
-        <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1">
+        <h1 class="cozy-digs mbr-section-title mbr-fonts-style mbr-white mb-4 display-1">
+
           <strong>Cozy Digs</strong>
         </h1>
         
@@ -98,102 +99,116 @@
 </section>
 
 
-<section data-bs-version="5.1" class="article05 cid-ubE6xtTYQl" id="about-me-5-ubE6xtTYQl">
-  
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12">
-        <div class="card-wrapper">
-          <div class="row">
-            <div class="col-12 col-md-12 col-lg-5 image-wrapper">
-              <img class="w-100" src="{% static 'static_asset/images/photo-1516979187457-637abb4f9353.jpeg' %}" alt="room image">
-            </div>
-            <div class="col-12 col-lg col-md-12">
-              <div class="text-wrapper align-left">
-                <h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
-                  <strong>Who We Are</strong>
-                </h1>
-                <p class="mbr-text mbr-fonts-style mb-3 display-7">Welcome to StudentStays, your ultimate destination for finding the coolest and comfiest student homes! We're here to make your search for the perfect sanctuary a breeze.</p>
-                <p class="mbr-text mbr-fonts-style mb-3 display-7">Our mission is simple: to provide students with top-notch living spaces that are not just rooms, but havens of relaxation and fun.</p>
-                <p class="mbr-text mbr-fonts-style display-7">Join the StudentStays family today and experience the joy of hassle-free living!</p>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="before-card-section"> 
 
-  <div style="display: flex;">
-    <h1><strong style="align-self: center;">Rooms</strong></h1>
-    <a href="#bottom" style="margin-left: 45%;">Go To Bottom</a>
-</div>
-
+<div style="display: flexbox;">
+  <a href="#bottom" class="align-center">Go To Bottom</a>
 <details class="dropdown">
-  <summary role="button">
-    <a class="button">Click For Filters!</a>
+  <summary role="button ">
+    <a class="button  filter-button" style="padding: 3%; margin-left: 10%; margin-top: 2%; width: 80%; text-align: center;">Filters!</a>
   </summary>
-  <ul style="display: gi;">
+  <ul class="filter-list">
 
-    filters :
     <form id="filterForm" method="GET">
-            <li><a>furnished : {{ rooms.form.furnished }}</a></li >
-            <li><a>type : {{ rooms.form.room_type }}</a></li >
-            <li><a>currently available : {{ rooms.form.available }}</a></li >
-            <li><a>room for : {{ rooms.form.room_for }}</a></li >
-            <li><a>area : {{ rooms.form.area }}</a></li >
+            <li><a><span class="filter-key">furnished :</span> <span class="filter-value">{{ rooms.form.furnished }}</span></a></li >
+            <li><a><span class="filter-key">type :</span> <span class="filter-value">{{ rooms.form.room_type }}</span></a></li >
+            <li><a><span class="filter-key">currently available :</span> <span class="filter-value">{{ rooms.form.available }}</span></a></li >
+            <li><a><span class="filter-key">room for :</span> <span class="filter-value">{{ rooms.form.room_for }}</span></a></li >
+            <li><a><span class="filter-key">area :</span> <span class="filter-value">{{ rooms.form.area }}</span></a></li >
 
-            <li><a>budget : {{ rooms.form.budget_range }}</a></li >
+            <li><a>budget : <span class="filter-value">{{ rooms.form.budget_range }}</span></a></li >
 
 
-            <input type="submit" />
+            <li><button class="btn btn-success" type="submit" >submit</button></li>
     </form>
 </ul>
 </details>
 
-
-<strong style="font-style: italic;"> Note: click anywhere on room card to see details</strong>
+</div>
 </section>
 
-<section data-bs-version="5.1" class="features025 cid-ubEDa72U4k" id="features025-0">
-  <a name="rooms"></a>
 
-   {% for room in rooms.qs %}
+<section data-bs-version="5.1" class="list05 cid-ubE6xtTSGe" id="faq-3-ubE6xtTSGe" style="padding-top: 3%;">
+  <div class="container" style="padding-left:0; padding-right: 0;">
+      <div class="col-12 mb-3 content-head">
+          <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+              <strong>Rooms</strong>
+          </h3>
+          
+      </div>
 
-   <a href="{% url 'room-details' room.pk %}" class="">
+      
+      <div class="row justify-content-center ">
+          <div class="col-12 col-lg-8">
 
-   <div class="container" style="background-color: #f5f5f5; padding: 10px;">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12">
-        <div class="card-wrapper">
-          <div class="row">
-            <div class="col-12 col-md-12 col-lg-4 ">
-              <img class="w-100 h-50" src="{% static 'static_asset/images/house.jpg' %}" alt="rent room images">
-            </div>
-            <div class="col-12 col-lg col-md-12">
-              <div class="text-wrapper align-left">
-                <h5 class="mbr-section-title mbr-fonts-style mb-4 display-2">
-                  <strong>{{room.room_type}}</strong>
-                </h5>
-                <p class="price mbr-fonts-style mb-4 display-7">
-                  {{room.rent}} Rs<br>
-                </p>
-                    
-                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{room.room_for}}</p>
-                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{room.house.house_name}} {{room.house.area}}</p>
-                {% if room.available %}
-                    <p class="mbr-text mbr-fonts-style mb-4 display-7">currently available</p>
-                {% else %}
-                    <p class="mbr-text mbr-fonts-style mb-4 display-7">currently unavilable</p>
-                {% endif %}
-                
-                <div class="mbr-section-btn mt-3">
-                  <a class="btn btn-lg btn-secondary display-7 map-link" href="https://www.google.com/maps?q={{ room.house.latitude }},{{ room.house.longitude }}" target="_blank">View on Map</a>
+            <a name="rooms" style="margin: 0;"></a>
+
+            {% for room in rooms.qs %}
+            
+              <div class="card-item-cover item col-12 active">
+                  <div class="card-item item-wrapper">
+                 
+                        <div class="room-image">
+                          {% if room.image %}
+                            <img src="{{ room.image.url }}" alt="rent room image">
+                          {% else %}
+                            <img class="" src="{% static 'static_asset/images/house.jpg' %}" alt="rent room images">
+                          {% endif %}
+                         
+                          <a class="btn btn-lg btn-info  map-link room-btn" href="{% url 'room-details' room.pk %}">Detail</a>
+                          <a class="btn btn-lg btn-secondary  map-link room-btn" href="https://www.google.com/maps?q={{ room.house.latitude }},{{ room.house.longitude }}" target="_blank">Map</a>
+                        </div>
+                      <div class="room-info-card">
+                        <h5 class="mbr-card-title mbr-fonts-style mt-0 mb-3 display-5">
+                          <strong>{{room.room_type}}</strong>
+                        </h5>
+
+                        <p class="mbr-text price mbr-fonts-style mb-2 display-7">
+                          {{room.rent}} Rs<br>
+                        </p>
+                            
+                        <p class="mbr-text mbr-fonts-style mb-2 display-7">{{room.room_for}}</p>
+                        <p class="mbr-text mbr-fonts-style mb-2 display-7">{{room.house.house_name}} {{room.house.area}}</p>
+                        {% if room.available %}
+                            <p class="mbr-text mbr-fonts-style mb-2 display-7">currently available</p>
+                        {% else %}
+                            <p class="mbr-text mbr-fonts-style mb-2 display-7">currently unavilable</p>
+                        {% endif %}
+                      
+
+                      </div>
+                  </div>
+              </div>
+              
+            {% endfor %}
+            
+          </div>
+      </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="social4 cid-ubE6xtWJKG" id="follow-us-1-ubE6xtWJKG">
+
+
+  <section data-bs-version="5.1" class="article05 cid-ubE6xtTYQl" id="about-me-5-ubE6xtTYQl">
+  
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12">
+          <div class="card-wrapper">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-5 image-wrapper">
+                <img class="w-100" src="{% static 'static_asset/images/photo-1516979187457-637abb4f9353.jpeg' %}" alt="room image">
+              </div>
+              <div class="col-12 col-lg col-md-12">
+                <div class="text-wrapper align-left">
+                  <h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                    <strong>Who We Are</strong>
+                  </h1>
+                  <p class="mbr-text mbr-fonts-style mb-3 display-7">Welcome to StudentStays, your ultimate destination for finding the coolest and comfiest student homes! We're here to make your search for the perfect sanctuary a breeze.</p>
+                  <p class="mbr-text mbr-fonts-style mb-3 display-7">Our mission is simple: to provide students with top-notch living spaces that are not just rooms, but havens of relaxation and fun.</p>
+                  <p class="mbr-text mbr-fonts-style display-7">Join the StudentStays family today and experience the joy of hassle-free living!</p>
+                  
                 </div>
               </div>
             </div>
@@ -201,11 +216,9 @@
         </div>
       </div>
     </div>
-  </div>
-  <br> <br>
-  </a>
-   {% endfor %}
   </section>
+  
+
 
 <section data-bs-version="5.1" class="features023 cid-ubE6xtUBFG" id="metrics-1-ubE6xtUBFG">
 

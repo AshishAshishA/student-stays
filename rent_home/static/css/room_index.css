@@ -1,0 +1,51 @@
+
+@media (max-width: 700px) {
+	.room-container.mbr-fullscreen{
+	  height: 60% !important;
+	  min-height: auto !important;
+	}
+  }
+
+  @media (max-width: 700px) {
+	.cozy-digs{
+	  visibility: hidden;
+	}
+  }
+
+.card-item{
+	display: flex;
+	
+}
+
+.card-item-cover{
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.room-info-card{
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+	/* padding: 5px; */
+}
+
+.room-image{
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	margin-right: 5%;
+	padding: auto;
+}
+
+img{
+	height: 80%;
+}
+
+.room-btn{
+	padding: 2%;
+	margin: 2%;
+}
+
+p.mbr-text{
+	font-weight: bold;
+}
