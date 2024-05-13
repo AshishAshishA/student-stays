@@ -8,6 +8,8 @@ urlpatterns = [
     path("house/update/<int:pk>/", views.house_update, name="house-update"),
     path("house/", views.house_list, name="house-list"),
 
+    path('house/map/view/',views.map_view, name="map-view"),
+
     path("", views.room_index, name="room-index"),
     path("room/<int:pk>/", views.room_details, name="room-details"),
     path("room/update/<int:pk>/", views.room_update, name="room-update"),

@@ -36,6 +36,32 @@ class RoomIndexView(ListView):
 
 room_index = RoomIndexView.as_view()
 
+class MapView(ListView):
+    models = Room
+    template_name = 'rent_home/map_view.html'
+    queryset=Room.objects.all()
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = Room.objects.all()
+        # print('filter',self.request.GET)
+
+        points=list()
+
+        rooms =  RoomFilter(self.request.GET, queryset=queryset)
+
+
+        for room in rooms.qs:
+            points.append(
+                {'lat':room.house.latitude, 'lng':room.house.longitude}
+            )
+
+        context['rooms'] = RoomFilter(self.request.GET, queryset=queryset)
+        context['points'] = points
+        return context
+
+map_view = MapView.as_view()
+
 
 class HouseDetailView(DetailView):
     model = House
